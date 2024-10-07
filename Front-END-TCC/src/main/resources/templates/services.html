@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - Freelancer.NET</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="services-container">
+        <h1>Serviços para você</h1>
+        <p>Encontramos alguns serviços que se encaixam no seu critério.</p>
+        
+        <!-- Lista de serviços -->
+        <div class="service-list">
+            <div th:each="service : ${services}">
+                <div class="service-item">
+                    <!-- Título do serviço -->
+                    <h3 th:text="${service.title}">Serviço Título</h3>
+
+                    <!-- Descrição curta do serviço -->
+                    <p th:text="${service.description}">Descrição do serviço...</p>
+
+                    <!-- Categoria do serviço -->
+                    <p><strong>Categoria:</strong> <span th:text="${service.category}">Categoria do serviço</span></p>
+
+                    <!-- Preço do serviço -->
+                    <p><strong>Preço:</strong> R$ <span th:text="${service.price}">100</span></p>
+
+                    <!-- Avaliação do serviço -->
+                    <p><strong>Avaliação:</strong> 
+                        <span th:text="${service.rating}">4.5</span> estrelas
+                    </p>
+
+                    <!-- Data do serviço -->
+                    <p><strong>Data:</strong> <span th:text="${#dates.format(service.date, 'dd/MM/yyyy')}">4 dias atrás</span></p>
+
+                    <!-- Botão para visualizar mais detalhes do serviço -->
+                    <div class="service-actions">
+                        <a th:href="@{/services/{id}(id=${service.id})}" class="btn">Ver mais detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
