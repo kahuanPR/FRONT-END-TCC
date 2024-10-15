@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfis para Você - Freelancer.NET</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background-color: #e9ecef; /* Fundo cinza claro */
+            font-family: 'Poppins', sans-serif; /* Fonte mais moderna */
+            margin: 0;
+            padding: 20px;
+        }
+        .profiles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .profile-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .profile-item {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .profile-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .profile-item h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .profile-item p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .profile-item strong {
+            color: #333;
+        }
+        .profile-actions {
+            margin-top: 20px;
+        }
+        .profile-actions a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .profile-actions a.btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="profiles-container">
+        <h1>Perfis para Você</h1>
+        <p>Confira alguns profissionais que podem te ajudar.</p>
+
+        <!-- Lista de perfis em cards -->
+        <div class="profile-list" th:each="profile : ${perfis}">
+            <div class="profile-item">
+                <!-- Nome do usuário -->
+                <h3 th:text="${profile.nome}">Nome do Usuário</h3>
+
+                <!-- Descrição do serviço -->
+                <p th:text="${profile.descricaoServico}">Descrição do serviço...</p>
+
+                <!-- Avaliação do usuário -->
+                <p><strong>Avaliação:</strong> 
+                    <span th:text="${profile.avaliacao}">4.5</span> estrelas
+                </p>
+
+                <!-- Localização -->
+                <p><strong>Localização:</strong> <span th:text="${profile.localizacao}">Localização</span></p>
+
+                <!-- O que o profissional pode oferecer -->
+                <p><strong>Oferece:</strong> <span th:text="${profile.ofertas}">Serviços oferecidos</span></p>
+
+                <!-- Botão para ver mais detalhes -->
+                <div class="profile-actions">
+                    <a th:href="@{/perfis/{id}(id=${profile.id})}" class="btn">Ver perfil completo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

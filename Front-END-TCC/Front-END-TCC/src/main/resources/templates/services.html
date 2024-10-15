@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - Freelancer.NET</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .service-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .service-item {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .service-item h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .service-item p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .service-item strong {
+            color: #333;
+        }
+        .service-actions {
+            margin-top: 20px;
+        }
+        .service-actions a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .service-actions a.btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="services-container">
+        <h1>Serviços para você</h1>
+        <p>Encontramos alguns serviços que se encaixam no seu critério.</p>
+
+        <!-- Lista de serviços em cards -->
+        <div class="service-list">
+            <div th:each="service : ${services}">
+                <div class="service-item">
+                    <!-- Título do serviço -->
+                    <h3 th:text="${service.title}">Serviço de Exemplo</h3>
+
+                    <!-- Descrição curta do serviço -->
+                    <p th:text="${service.description}">Descrição do serviço...</p>
+
+                    <!-- Categoria do serviço -->
+                    <p><strong>Categoria:</strong> <span th:text="${service.category}">Categoria do serviço</span></p>
+
+                    <!-- Preço do serviço -->
+                    <p><strong>Preço:</strong> R$ <span th:text="${service.price}">100</span></p>
+
+                    <!-- Avaliação do serviço -->
+                    <p><strong>Avaliação:</strong> 
+                        <span th:text="${service.rating}">4.5</span> estrelas
+                    </p>
+
+                    <!-- Data do serviço -->
+                    <p><strong>Data:</strong> <span th:text="${#dates.format(service.date, 'dd/MM/yyyy')}">4 dias atrás</span></p>
+
+                    <!-- Botão para visualizar mais detalhes do serviço -->
+                    <div class="service-actions">
+                        <a th:href="@{/services/{id}(id=${service.id})}" class="btn">Ver mais detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

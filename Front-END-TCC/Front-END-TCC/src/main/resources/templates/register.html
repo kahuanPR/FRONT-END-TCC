@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar - Freelancer.NET</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e9ecef; /* Fundo cinza claro */
+            font-family: 'Poppins', sans-serif; /* Fonte mais moderna */
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .background-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .top-right-shape {
+            position: absolute;
+            top: -50px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(95, 63, 201, 0.2);
+            border-radius: 50%;
+        }
+
+        .bottom-left-shape {
+            position: absolute;
+            bottom: -50px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(95, 63, 201, 0.1);
+            border-radius: 50%;
+        }
+
+        .register-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra maior e suave */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .register-container:hover {
+            transform: translateY(-5px); /* Efeito hover de elevação */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Sombra mais intensa no hover */
+        }
+
+        .register-container img {
+            margin-bottom: 20px;
+            animation: logo-fade 1s ease-in-out; /* Animação de fade-in para o logo */
+        }
+
+        @keyframes logo-fade {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #495057; /* Cor do rótulo mais suave */
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px 15px; /* Mais espaçamento nos campos */
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1); /* Efeito de foco suave */
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+        }
+
+        .register-container .text-center h1 {
+            font-weight: bold;
+            font-size: 24px;
+            color: #343a40;
+        }
+
+        .register-container a {
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .register-container a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        .register-container .text-center img {
+            width: 100px; /* Tamanho do logo ajustado */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="top-right-shape"></div>
+        <div class="bottom-left-shape"></div>
+    </div>
+
+    <div class="container register-container">
+        <div class="text-center mb-4">
+            <img src="/path/to/logo.png" alt="Logo">
+            <h1 class="h3">Freelancer.NET</h1>
+        </div>
+        <form th:action="@{/register}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Digite seu username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Número de Telefone</label>
+                <input type="text" class="form-control" id="telefone" placeholder="Digite seu telefone">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Registrar</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/login">Já tem uma conta? Faça login</a>
+        </div>
+    </div>
+</body>
+</html>
