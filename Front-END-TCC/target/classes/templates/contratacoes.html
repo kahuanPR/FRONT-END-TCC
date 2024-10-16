@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissionais Contratados</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .contract-list {
+            list-style: none;
+            padding: 0;
+        }
+        .contract-item {
+            background-color: #e9ecef;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .contract-item h2 {
+            color: #007bff;
+        }
+        .contract-item p {
+            margin: 5px 0;
+        }
+        .contract-item .date {
+            color: #6c757d;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profissionais Contratados</h1>
+
+        <ul class="contract-list" th:if="${contratacoes.size() > 0}">
+            <li th:each="contratacao : ${contratacoes}" class="contract-item">
+                <h2 th:text="${contratacao.freelancer.nome}">Nome do Freelancer</h2>
+                <p><strong>Descrição:</strong> <span th:text="${contratacao.freelancer.descricaoServico}">Descrição do serviço</span></p>
+                <p class="date">Contratado em: <span th:text="${contratacao.dataContratacao}">Data da contratação</span></p>
+            </li>
+        </ul>
+
+        <p th:if="${contratacoes.size() == 0}">Você ainda não contratou nenhum profissional.</p>
+    </div>
+</body>
+</html>
